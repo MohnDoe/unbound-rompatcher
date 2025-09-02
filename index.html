@@ -19,23 +19,56 @@
       type="text/javascript"
       src="./rom-patcher-js/RomPatcher.webapp.js"
     ></script>
+    <script>
+      window.sa_event =
+        window.sa_event ||
+        function () {
+          var a = [].slice.call(arguments);
+          window.sa_event.q
+            ? window.sa_event.q.push(a)
+            : (window.sa_event.q = [a]);
+        };
+    </script>
 
     <!-- Rom Patcher JS initialization -->
     <script type="text/javascript">
+      const myPatcherSettings = {
+        language: "fr",
+
+        oninitialize: function (romFile) {
+          /* triggered when Rom Patcher JS has been initialized */
+        },
+        onloadrom: function (romFile) {
+          /* triggered when user provides a ROM and before validating it */
+          /* can be used to: */
+          /* - modify it before validation  (e.g. add/remove/fix header, change endianness...) */
+          /* - to switch to another patch file in the dropdown selector */
+          sa_event("load_rom");
+        },
+        onvalidaterom: function (romFile, isRomValid) {
+          /* triggered after ROM is validated */
+          /* can be used to show a custom error message if provided ROM is not valid */
+          sa_event("validate_rom");
+        },
+        onloadpatch: function (patchFile, embededPatchInformation) {
+          /* triggered when user selects a patch from the dropdown */
+          /* can be used to toggle HTML elements in your site depending on the selected patch */
+        },
+        onpatch: function (romFile) {
+          /* triggered a ROM is patched */
+          /* can be used to modify it before the patched ROM file is saved */
+          sa_event("patch_rom");
+        },
+      };
+
       window.addEventListener("load", function (evt) {
         try {
-          RomPatcherWeb.initialize(
-            {
-              language: "fr",
-              requireValidation: false,
-            },
-            {
-							file: 'french.ups', //required, must match the patch file name in the zip
-							name: "Pokémon Unbound v2.1.1.1 (French v0.1)",
-							description: "Traduction française de Pokémon Unbound v2.1.1.1",
-							outputName: "Pokémon Unbound v2.1.1.1 (French v0.1)", //patched ROM name
-            }
-          );
+          RomPatcherWeb.initialize(myPatcherSettings, {
+            file: "french.ups", //required, must match the patch file name in the zip
+            name: "Pokémon Unbound v2.1.1.1 (French v0.1)",
+            description: "Traduction française de Pokémon Unbound v2.1.1.1",
+            outputName: "Pokémon Unbound v2.1.1.1 (French v0.1)", //patched ROM name
+          });
         } catch (err) {
           var message = err.message;
           if (
@@ -206,8 +239,17 @@
         />Powered by Rom Patcher JS</a
       >
     </div>
-		<!-- 100% privacy-first analytics -->
-		<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-		<noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif?collect-dnt=true" alt="" referrerpolicy="no-referrer-when-downgrade"/></noscript>
+    <!-- 100% privacy-first analytics -->
+    <script
+      data-collect-dnt="true"
+      async
+      src="https://scripts.simpleanalyticscdn.com/latest.js"
+    ></script>
+    <noscript
+      ><img
+        src="https://queue.simpleanalyticscdn.com/noscript.gif?collect-dnt=true"
+        alt=""
+        referrerpolicy="no-referrer-when-downgrade"
+    /></noscript>
   </body>
 </html>
