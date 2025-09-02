@@ -150,6 +150,43 @@
           id="rom-patcher-patch-requirements-value"
         ></div>
       </div>
+      <div
+        class="rom-patcher-row margin-bottom"
+        id="rom-patcher-row-file-patch"
+      >
+        <div class="text-right">
+          <label for="rom-patcher-input-file-patch" data-localize="yes"
+            >Patch file:</label
+          >
+        </div>
+        <div class="rom-patcher-container-input">
+          <select id="rom-patcher-select-patch"></select>
+        </div>
+      </div>
+      <div
+        class="rom-patcher-row margin-bottom"
+        id="rom-patcher-row-patch-description"
+      >
+        <div class="text-right text-mono text-muted" data-localize="yes">
+          Description:
+        </div>
+        <div class="text-truncate" id="rom-patcher-patch-description"></div>
+      </div>
+      <div
+        class="rom-patcher-row margin-bottom text-selectable text-mono text-muted"
+        id="rom-patcher-row-patch-requirements"
+      >
+        <div
+          class="text-right text-mono"
+          id="rom-patcher-patch-requirements-type"
+        >
+          ROM requirements:
+        </div>
+        <div
+          class="text-truncate"
+          id="rom-patcher-patch-requirements-value"
+        ></div>
+      </div>
 
       <div class="text-center" id="rom-patcher-row-apply">
         <div id="rom-patcher-row-error-message" class="margin-bottom">
@@ -160,7 +197,26 @@
         </button>
       </div>
     </div>
+      <div class="text-center" id="rom-patcher-row-apply">
+        <div id="rom-patcher-row-error-message" class="margin-bottom">
+          <span id="rom-patcher-error-message"></span>
+        </div>
+        <button id="rom-patcher-button-apply" data-localize="yes" disabled>
+          Apply patch
+        </button>
+      </div>
+    </div>
 
+    <div id="rom-patcher-powered" class="text-center">
+      <a href="https://github.com/marcrobledo/RomPatcher.js" target="_blank"
+        ><img
+          src="rom-patcher-js/assets/powered_by_rom_patcher_js.png"
+          loading="lazy"
+        />Powered by Rom Patcher JS</a
+      >
+    </div>
+  </body>
+</html>
     <div id="rom-patcher-powered" class="text-center">
       <a href="https://github.com/marcrobledo/RomPatcher.js" target="_blank"
         ><img
